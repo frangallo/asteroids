@@ -3,15 +3,36 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <script src="./movingObject.js"></script>
-    <script src="./asteroid.js"></script>
-    <script src="./bullet.js"></script>
-    <script src="./ship.js"></script>
-    <script src="./util.js"></script>
-    <script src="./game.js"></script>
-    <script src="./gameView.js"></script>
+    <script src="src/keymaster.js"></script>
+    <script src="src/util.js"></script>
+    <script src="src/movingObject.js"></script>
+    <script src="src/asteroid.js"></script>
+    <script src="src/ship.js"></script>
+    <script src="src/bullet.js"></script>
+    <script src="src/game.js"></script>
+    <script src="src/gameView.js"></script>
+
+    <style>
+      html, body, canvas {
+        padding: 0px;
+        margin: 0px;
+      }
+    </style>
   </head>
   <body>
-
+    <canvas id="game-canvas" width="1000" height="1000"></canvas>
+    <script>
+      var canvasEl = document.getElementById("game-canvas").getContext("2d");
+      canvasEl.height = window.innerHeight;
+      canvasEl.width = window.innerWidth;
+      // var ctx = canvasEl.getContext("2d");
+      var asteroids = new Asteroids.Game({
+        DIM_X: canvasEl.width,
+        DIM_Y: canvasEl.height,
+        NUM_ASTEROIDS: 10
+      });
+      var gameView = new Asteroids.GameView(asteroids, canvasEl);
+      gameView.start();
+    </script>
   </body>
 </html>
